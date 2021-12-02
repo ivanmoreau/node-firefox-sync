@@ -23,8 +23,6 @@ declare class FirefoxSync {
     getConfiguration(): Promise<any>;
     fetch(path: any, params?: {}): Promise<any>;
     tokenRefreshPromise: any;
-    putCollectionItem(collection: any, payload: any): Promise<any>;
-    putCollectionItems(collection: any, payloads: any): Promise<any>;
     getCryptoKeys(): Promise<any>;
     getCryptoKeysPromise: Promise<any>;
     getCollectionKeyBundle(collection: any): Promise<{

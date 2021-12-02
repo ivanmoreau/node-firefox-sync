@@ -131,20 +131,21 @@ class FirefoxSync {
   }
 
   async putCollectionItem (collection, payload) {
-    const encrypted_bso = await this.encryptCollectionBSO(collection, payload)
+    const encryptedBSO = await this.encryptCollectionBSO(collection, payload)
     return this.fetch(`storage/${collection}/${payload.id}`, {
       method: 'put',
-      body: JSON.stringify(encrypted_bso),
-      headers: {'Content-Type': 'application/json'}
+      body: JSON.stringify(encryptedBSO),
+      headers: { 'Content-Type': 'application/json' }
     })
   }
-  
-  async putCollectionItem (collection, payloads) {
-    const encrypted_bsos = payloads.map(x => await this.encryptCollectionBSO(collection, x))
+
+  async putCollectionItems (collection, payloads) {
+    const encryptedBSOs = payloads.map(async x =>
+      await this.encryptCollectionBSO(collection, x))
     return this.fetch(`storage/${collection}`, {
       method: 'post',
-      body: JSON.stringify(encrypted_bsos),
-      headers: {'Content-Type': 'application/json'}
+      body: JSON.stringify(encryptedBSOs),
+      headers: { 'Content-Type': 'application/json' }
     })
   }
 
